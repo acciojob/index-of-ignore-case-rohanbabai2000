@@ -1,20 +1,30 @@
 function indexOfIgnoreCase(s1, s2) {
   // write your code here
-	const main = str.toLowerCase();
-    const sub = subStr.toLowerCase();
+	const cleanStr = [];
+    const indexMap = [];
 
-    for (let i = 0; i <= main.length - sub.length; i++) {
-        let found = true;
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] !== " ") {
+            cleanStr.push(str[i].toLowerCase());
+            indexMap.push(i); // map cleaned index to original index
+        }
+    }
 
-        for (let j = 0; j < sub.length; j++) {
-            if (main[i + j] !== sub[j]) {
-                found = false;
+    const cleanSub = subStr.replace(/\s+/g, "").toLowerCase();
+
+    // Manual substring search
+    for (let i = 0; i <= cleanStr.length - cleanSub.length; i++) {
+        let match = true;
+
+        for (let j = 0; j < cleanSub.length; j++) {
+            if (cleanStr[i + j] !== cleanSub[j]) {
+                match = false;
                 break;
             }
         }
 
-        if (found) {
-            return i;
+        if (match) {
+            return indexMap[i]; // return original index
         }
     }
 
