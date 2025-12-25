@@ -1,6 +1,12 @@
 function indexOfIgnoreCase(s1, s2) {
   // write your code here
-	return str.indexOf(subStr);
+	let n=s1.length;
+	for(let i=0;i<n;i++){
+		if(s2.charAt(0)===s1[i]){
+			return i;
+		}
+	}
+	return -1;
 }
 
 // Please do not change the code below
